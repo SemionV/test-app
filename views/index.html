@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test app</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="js/lib/jquery-1.7.2.js"></script>
+    <script src="js/lib/knockout-2.2.1.js"></script>
+    <script src="js/lib/knockout.validation.js"></script>
+    <script src="js/paramsModel.js"></script>
+
+    <script type="text/javascript">
+        function apply() {
+            ko.applyBindings(ko.validatedObservable(ParametersModel));
+        }
+    </script>
+    <script id="customMessageTemplate" type="text/html">
+        <em class="customMessage" data-bind='validationMessage: field'></em>
+    </script>
+</head>
+<body onload="apply()">
+    <div data-bind='validationOptions: { messageTemplate: "customMessageTemplate" }'>
+        <div class="header mb20">Parameters</div>
+        <div class="row mb15 clear-fix">
+            <div class="left title">Data directory: </div>
+            <div class="left value">
+                <input class="flex-input" data-bind="value: dataPath"/>
+            </div>
+        </div>
+        <div class="row mb15 clear-fix">
+            <div class="left title">Thread count: </div>
+            <div class="left value">
+                <input class="flex-input" data-bind="value: threadCount"/>
+            </div>
+        </div>
+        <div class="row mb15 clear-fix">
+            <div class="left title">Db name: </div>
+            <div class="left value">
+                <input class="flex-input" data-bind="value: dbName"/>
+            </div>
+        </div>
+        <div class="row mb15 clear-fix">
+            <div class="left title">Db host: </div>
+            <div class="left value">
+                <input class="flex-input" data-bind="value: dbHost"/>
+            </div>
+        </div>
+        <div class="row mb15 clear-fix">
+            <div class="left title">Db port: </div>
+            <div class="left value">
+                <input class="flex-input" data-bind="value: dbPort"/>
+            </div>
+        </div>
+        <div>
+            <span class="button" data-bind="click: download">Download files</span>
+        </div>
+    </div>
+</body>
+</html>

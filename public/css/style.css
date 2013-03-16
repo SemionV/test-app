@@ -1,0 +1,81 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.header {
+    font-size: 20px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.ml10{
+    margin-left: 10px;
+}
+
+.left{
+    float: left;
+}
+
+.clear-fix {
+    clear: both;
+    overflow: hidden;
+}
+
+.row .title{
+    width: 150px;
+}
+
+.row .value{
+    width: 300px;
+}
+
+.flex-input
+{
+    width: 100%;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.button
+{
+    padding: 5px 6px;
+    display: inline-block;
+    text-align: center;
+    background-color: #777;
+    border: solid 1px black;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    /*border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;*/
+    text-shadow: 1px 1px #666;
+    text-decoration: none;
+}
+
+.customMessage { color: Red; }
+
+.bold {
+    font-weight: bold;
+}
+
+.bb {
+    border-bottom: solid 1px gray;
+}

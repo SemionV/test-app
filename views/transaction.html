@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Downloading</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="js/lib/knockout-2.2.1.js"></script>
+    <script src="js/lib/jquery-1.7.2.js"></script>
+    <script src="js/statisticsModel.js"></script>
+    <script type="text/javascript">
+        function setup() {
+            window.model = new StatisticsModel();
+            ko.applyBindings(window.model);
+
+            showStatistics();
+        }
+        function showStatistics(){
+            var id = getURLParameter("id");
+            var data = {transactionId: id, options: JSON.parse(getURLParameter("options"))};
+            $.ajax({
+                url: "/statistics",
+                dataType: 'json',
+                type: "POST",
+                data: data
+            })
+                .success(function(dto){
+                        window.model.bind(id, dto);
+
+                    if(!dto.status) {
+                        window.setTimeout(showStatistics, 50);
+                    }
+                });
+        }
+
+        function getURLParameter(name) {
+            return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+        }
+    </script>
+</head>
+<body onload="setup()">
+    <div class="clear-fix mb20">
+        <div class="left">Transaction:&nbsp;</div>
+        <div class="left ml10" data-bind="text: id"></div>
+        <div data-bind="text: status" class="left ml10 bold"></div>
+        <div data-bind="text: time() ? time() + 'ms' : ''" class="left ml10"></div>
+    </div>
+    <table style="width: 50%">
+        <tbody data-bind="foreach: files">
+            <tr>
+                <td data-bind="text: status" class="bold bb"></td>
+                <td data-bind="text: path" class="bb"></td>
+                <td data-bind="text: recordsCount" class="bb"></td>
+                <td data-bind="text: time ? time + 'ms' : '' " class="bb"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
